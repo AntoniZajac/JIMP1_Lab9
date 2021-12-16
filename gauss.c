@@ -7,7 +7,7 @@
 int eliminate(Matrix *mat, Matrix *b)
 {
 	int i, j, c;
-	double a, k, u;
+	double a, k, u, g;
 
 	if (mat->r != b->r)
 	{
@@ -28,7 +28,8 @@ int eliminate(Matrix *mat, Matrix *b)
 			{
 				mat->data[j][c] -= u*k;
 				c++;
-			}	
+			}
+			b->data[j][0] -= u*b->data[j - 1][0];	
 		}
 				
 	}
