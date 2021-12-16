@@ -4,10 +4,11 @@
  * Zwraca 0 - elimnacja zakonczona sukcesem
  * Zwraca 1 - macierz osobliwa - dzielenie przez 0
  */
+
 int eliminate(Matrix *mat, Matrix *b)
 {
-	int i, j, c, h;
-	double a, k, u, g;
+	int i, j, c, h, maxr, y, f;
+	double a, k, u, g, max, tmp;
 
 	if (mat->r != b->r)
 	{
@@ -16,7 +17,37 @@ int eliminate(Matrix *mat, Matrix *b)
 
 	for (i = 0; i < mat->c; i++)
 	{
+		//zamianaWierszy(mat, b);
+
 		j = i;
+		y = i + 1;
+		max = mat->data[j][i];
+		maxr = j;
+		while (y < mat->r)
+		{
+			if (mat->data[y][i] > max)
+			{
+				max = mat->data[y][i];
+				maxr = y;
+			}
+			y++;
+		}
+		
+		if (maxr != j)
+		{
+			for (f = i; f < mat->c; f++)
+			{
+				tmp = mat->data[maxr][f];
+			       	mat->data[maxr][f] = mat->data[j][f];
+				mat->data[j][f] = tmp;
+			}
+
+			tmp = b->data[maxr][0];
+			b->data[maxr][0] = b->data[j][0];
+			b->data[j][0] = tmp;
+		}
+
+
 		h = i;
 		k = mat->data[j][i];
 		while (++j < mat->r)
