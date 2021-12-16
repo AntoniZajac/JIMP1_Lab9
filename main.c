@@ -13,14 +13,22 @@ int main(int argc, char ** argv) {
 	if (A == NULL) return -1;
 	if (b == NULL) return -2;
 	printToScreen(A);
-	printToScreen(b);
-								 
-	res = eliminate(A,b);
+	printToScreen(b);					 
+	
+	res = eliminate(A, b);
+
 	if (res != 0) {
 		fprintf(stderr, "Błąd! Powstała macierz jest osobliwa - dzielnie przez 0.\n");
 		return -3;
 	}
 	x = createMatrix(b->r, 1);
+	
+	printToScreen(A);
+	printToScreen(b);
+	printf("program dziala!!!!");
+
+	return 0;
+	
 	if (x != NULL) {
 		res = backsubst(x,A,b);											    
 		printToScreen(x);

@@ -6,7 +6,7 @@
  */
 int eliminate(Matrix *mat, Matrix *b)
 {
-	int i, j, c;
+	int i, j, c, h;
 	double a, k, u, g;
 
 	if (mat->r != b->r)
@@ -17,19 +17,20 @@ int eliminate(Matrix *mat, Matrix *b)
 	for (i = 0; i < mat->c; i++)
 	{
 		j = i;
+		h = i;
 		k = mat->data[j][i];
-		while (j < mat->r)
+		while (++j < mat->r)
 		{
-			j++;
+			
 			a = mat->data[j][i];
 			u = a / k;
 			c = i;
 			while ( c < mat->c)
 			{
-				mat->data[j][c] -= u*k;
+				mat->data[j][c] -= u*mat->data[h][c];
 				c++;
 			}
-			b->data[j][0] -= u*b->data[j - 1][0];	
+			b->data[j][0] -= u*b->data[h][0];	
 		}
 				
 	}

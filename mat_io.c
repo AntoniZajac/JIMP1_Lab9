@@ -13,7 +13,7 @@ Matrix * readFromFile(char * fname) {
 	Matrix * mat = NULL;
 	
 	if( fin != NULL ) {
-		fscnaf(fin, "%d %d", &r, &c);
+		fscanf(fin, "%d %d", &r, &c);
 		mat = createMatrix(r, c);
 		if( mat != NULL ) {
 			for( ir = 0; ir < r; ir++ ) {
@@ -36,7 +36,7 @@ Matrix * readFromFile(char * fname) {
 void printToScreen(Matrix *mat) {
 	int i, j;
 	printf("[ \n");
-	for( i=0; j < mat->r; i++ ) {
+	for( i=0; i < mat->r; i++ ) {
 		printf("  ");
 		for( j=0; j < mat->c; j++ ) {
 			printf("%f ", mat->data[i][j]);
@@ -48,13 +48,13 @@ void printToScreen(Matrix *mat) {
 
 Matrix * createMatrix(int r, int c) {
 	int i;
-	Matrix * mat = (Matrix*) malloc(siezof(Matrix));
+	Matrix * mat = (Matrix*)malloc(sizeof(mat));
 	if( mat != NULL ) {
 		mat->r = r;
 		mat->c = c;
-		mat->data = (double**) malloc(sizeof(double*) * r);
+		mat->data = (double**)malloc(sizeof(double*) * r);
 		for( i=0; i < r; i++ ) {
-			mat->data[i] = (double*) malloc(sizeof(double) * c);
+			mat->data[i] = (double*)malloc(sizeof(double) * c);
 		}
 	}
 
