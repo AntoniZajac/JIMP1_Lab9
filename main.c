@@ -16,12 +16,15 @@ int main(int argc, char ** argv) {
 	printToScreen(b);
 								 
 	res = eliminate(A,b);
+	if (res != 0) {
+		fprintf(stderr, "Błąd! Powstała macierz jest osobliwa - dzielnie przez 0.\n");
+		return -3;
+	}
 	x = createMatrix(b->r, 1);
 	if (x != NULL) {
-		res = backsubst(x,A,b);
-													    
-	printToScreen(x);
-	freeMatrix(x);
+		res = backsubst(x,A,b);											    
+		printToScreen(x);
+		freeMatrix(x);
 	} else {
 		fprintf(stderr,"Błąd! Nie mogłem utworzyć wektora wynikowego x.\n");
 	}
