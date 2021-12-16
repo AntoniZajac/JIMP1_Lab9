@@ -17,7 +17,6 @@ int eliminate(Matrix *mat, Matrix *b)
 
 	for (i = 0; i < mat->c; i++)
 	{
-		//zamianaWierszy(mat, b);
 
 		j = i;
 		y = i + 1;
