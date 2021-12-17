@@ -21,7 +21,19 @@ int main(int argc, char ** argv) {
 
 	x = createMatrix(b->r, 1);
 	if (x != NULL) {
-		res = backsubst(x,A,b);											    
+		res = backsubst(x,A,b);
+	
+		if (res == 1)
+		{
+			fprintf(stderr, "Błąd! Dzielenie przez 0!\n");
+			return 1;
+		}
+		if (res == 2)
+		{
+			fprintf(stderr, "Błąd! Nieprawidłowe rozmiary macierzy\n");
+			return 2;
+		}
+			
 		printToScreen(x);
 		freeMatrix(x);
 	} else {
